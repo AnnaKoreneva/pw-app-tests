@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { fixtures as test } from "./fixture";
+import { fixtures as test } from "../fixture";
 
 test.beforeEach(async ({ page }) => {
     await page.goto("/");

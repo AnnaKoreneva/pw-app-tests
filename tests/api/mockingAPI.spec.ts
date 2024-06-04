@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import tags from "../test-data/tags.json"
+import tags from "../../test-data/tags.json"
 
 test.beforeEach(async ({ page }) => {
   await page.route("*/**/api/tags", async route => { //wildcard URL to simplify the look of the URL

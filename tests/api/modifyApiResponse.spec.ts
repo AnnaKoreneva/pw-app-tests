@@ -20,6 +20,6 @@ test.beforeEach(async ({ page }) => {
 test("has title", async ({ page }) => {
   await page.waitForTimeout(500);
   await expect(page.locator(".navbar-brand")).toHaveText("conduit");
-  await expect(page.locator("//app-article-preview[1]//h1")).toContainText("New title");
-  await expect(page.locator("app-article-preview p").first()).toContainText( "This is the new description");
+  await expect(page.locator("//app-article-preview[1]//h1")).toContainText( "This is the MOCK title");
+  await expect(page.locator("app-article-preview p").first()).toContainText("This is the MOCK description");
 });

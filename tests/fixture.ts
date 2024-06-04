@@ -17,16 +17,16 @@ export { fixtures }: This exports the fixtures object, presumably to be used els
 **/
 
 import { test as base } from '@playwright/test'
-import api from "../api/apiUtils"
+import  ApiUtils  from "../src/api/apiUtils.ts";
 
 
 type MyFixture = {
-    API: api
-}
+  API: ApiUtils;
+};
 
 const fixtures = base.extend<MyFixture>({
-    API: async ({ request }, use) => {
-        const API = new api(request);
+    API: async ({ request }: any, use: (arg0: any) => any) => {
+        const API = new ApiUtils(request);
         await use(API)
     }
 })

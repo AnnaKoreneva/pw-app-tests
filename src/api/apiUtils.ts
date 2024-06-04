@@ -1,14 +1,14 @@
 import { APIRequestContext } from "playwright-core";
 
-export default class ApiUtils{
+export class ApiUtils{
 
   constructor(private readonly request: APIRequestContext) { }
 
-  private async makeRequest(method: string, endpoint: string, requestBody?: Object, token?: string) {
+  private async makeRequest(method: string, endpoint: string, requestBody?: object, token?: string) {
     const res = this.request[method](endpoint, {
       data: requestBody,
       headers: {
-        Authorization: `Token ${token}`,
+        Authorization: token,
       },
     }); 
     return res
