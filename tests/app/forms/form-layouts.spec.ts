@@ -1,5 +1,6 @@
 import test from "@playwright/test";
-import { FormLayout } from "../../src/ui/pages/forms/form-layout";
+import { FormLayout } from "../../../src/app/page/forms/form-layouts/form-layout";
+import { InlineForm } from "../../../src/app/page/forms/form-layouts/inline-form";
 
 test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:4200/pages/forms/layouts");
@@ -11,7 +12,7 @@ test.describe("using the grid form", () => {
      const formLayout = new FormLayout(page);
      await formLayout.fillUsingGridEmail("test");
      await formLayout.checkRadioButton();
-     await formLayout.clickSignIn();  
+     await formLayout.clickSignIn();
    }); 
     
 })
@@ -19,9 +20,9 @@ test.describe("using the grid form", () => {
 test.describe("inline form", () => {
 
   test("email fill", async ({ page }) => {
-    const formLayout = new FormLayout(page);
-    await formLayout.fillInlineFormEmail("test");
-    await formLayout.fillUserName("Anna")
+    const inlineForm = new InlineForm(page);
+    await inlineForm.submitInlineForm('Anna Koreneva', 'test@test.com')
+    await inlineForm.checkInputValues("Anna Koreneva", "test@test.com");
   });
     
 });
