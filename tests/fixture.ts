@@ -17,18 +17,35 @@ export { fixtures }: This exports the fixtures object, presumably to be used els
 **/
 
 import { test as base } from '@playwright/test'
-import  ApiUtils  from "../src/api/apiUtils.ts";
+import { ApiUtils } from "../src/api/apiUtils.ts";
+import { Tooltip } from "../src/app/page/modals-and-overlays/tooltip.ts";
+import { SmartTable } from '../src/app/page/tables-and-data/smart-table.ts';
 
 
 type MyFixture = {
   API: ApiUtils;
+  tooltipPage: Tooltip;
+  smartTablePage: SmartTable;
 };
 
 const fixtures = base.extend<MyFixture>({
-    API: async ({ request }: any, use: (arg0: any) => any) => {
-        const API = new ApiUtils(request);
-        await use(API)
-    }
-})
+  API: async ({ request }: any, use: (arg0: any) => any) => {
+    const API = new ApiUtils(request);
+    await use(API);
+  },
+
+  tooltipPage: async ({ page }, use) => {
+    const tooltipPage = new Tooltip(page);
+    await tooltipPage.openTooltipPage();
+    await use(tooltipPage);
+  },
+
+  smartTablePage: async ({ page }, use) => {
+    const smartTablePage = new SmartTable(page);
+    await smartTablePage.openSmartTablePage();
+    await use(smartTablePage);
+
+  }
+});
 
 export { fixtures }
