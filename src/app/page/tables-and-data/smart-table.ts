@@ -4,15 +4,11 @@ import { threadId } from "worker_threads";
 export class SmartTable {
   constructor(private readonly page: Page) {}
 
-  private uniqueTableRaw = (email: string): Locator =>
-    this.page.getByRole("row", { name: email });
+  private uniqueTableRaw = (email: string): Locator => this.page.getByRole("row", { name: email });
 
-  private deleteIcon = this.page
-    .getByRole("table")
-    .locator("tr", { hasText: "mdo@gmail.com" })
-    .locator(".nb-trash");
+  private deleteIcon = this.page.getByRole("table").locator("tr", { hasText: "mdo@gmail.com" }).locator(".nb-trash");
 
-  async openSmartTablePage() {
+  async navigateToSmartTablePage() {
     await this.page.goto("http://localhost:4200/pages/tables/smart-table");
   }
 

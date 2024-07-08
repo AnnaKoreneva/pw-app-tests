@@ -16,16 +16,17 @@ Export Statement:
 export { fixtures }: This exports the fixtures object, presumably to be used elsewhere in your codebase.
 **/
 
-import { test as base } from '@playwright/test'
+import { test as base } from "@playwright/test";
 import { ApiUtils } from "../src/api/apiUtils.ts";
 import { Tooltip } from "../src/app/page/modals-and-overlays/tooltip.ts";
-import { SmartTable } from '../src/app/page/tables-and-data/smart-table.ts';
-
+import { SmartTable } from "../src/app/page/tables-and-data/smart-table.ts";
+import { DatePicker } from "../src/app/page/forms/date-picker.ts";
 
 type MyFixture = {
   API: ApiUtils;
   tooltipPage: Tooltip;
   smartTablePage: SmartTable;
+  datePickerPage: DatePicker
 };
 
 const fixtures = base.extend<MyFixture>({
@@ -36,16 +37,21 @@ const fixtures = base.extend<MyFixture>({
 
   tooltipPage: async ({ page }, use) => {
     const tooltipPage = new Tooltip(page);
-    await tooltipPage.openTooltipPage();
+    await tooltipPage.navigateToTooltipPage();
     await use(tooltipPage);
   },
 
   smartTablePage: async ({ page }, use) => {
     const smartTablePage = new SmartTable(page);
-    await smartTablePage.openSmartTablePage();
+    await smartTablePage.navigateToSmartTablePage();
     await use(smartTablePage);
+  },
 
+  datePickerPage: async ({ page }, use) => {
+    const datePickerPage = new DatePicker(page);
+    datePickerPage.navigateToDatePickerPage();
+    await use(datePickerPage);
   }
 });
 
-export { fixtures }
+export { fixtures };
