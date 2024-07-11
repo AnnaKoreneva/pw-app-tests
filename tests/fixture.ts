@@ -22,6 +22,7 @@ import { Tooltip } from "../src/app/page/modals-and-overlays/tooltip.ts";
 import { SmartTable } from "../src/app/page/tables-and-data/smart-table.ts";
 import { DatePicker } from "../src/app/page/forms/date-picker.ts";
 import { Dashboard } from "../src/app/page/dashboard.ts";
+import { DragDropAndIframe } from "../src/app/page/externalSite/dragDropAndIframe.ts";
 
 type MyFixture = {
   API: ApiUtils;
@@ -29,6 +30,7 @@ type MyFixture = {
   smartTablePage: SmartTable;
   datePickerPage: DatePicker;
   dashboardPage: Dashboard;
+  dragAndDropPage: DragDropAndIframe;
 };
 
 const fixtures = base.extend<MyFixture>({
@@ -55,11 +57,17 @@ const fixtures = base.extend<MyFixture>({
     await use(datePickerPage);
   },
 
-  dashboardPage: async({ page },use) => {
-    const dashboardPage = new Dashboard(page)
-    await dashboardPage.navigateToDashboardPage()
-    await use(dashboardPage)
-  }
+  dashboardPage: async ({ page }, use) => {
+    const dashboardPage = new Dashboard(page);
+    await dashboardPage.navigateToDashboardPage();
+    await use(dashboardPage);
+  },
+
+  dragAndDropPage: async ({ page }, use) => {
+    const dragAndDropPage = new DragDropAndIframe(page);
+    await dragAndDropPage.navigateToDragAndDrop();
+    await use(dragAndDropPage);
+  },
 });
 
 export { fixtures };
