@@ -11,7 +11,7 @@ export class Dashboard {
     '[tabtitle="Temperature"] ngx-temperature-dragger'
   );
 
-  // first way to move slider is to nodify the JS
+  // first way to move slider is to update html attributes
   async moveGaugeToMaxTemp() {
     const tempGauge = this.page.locator('[tabtitle="Temperature"] ngx-temperature-dragger circle');
       
@@ -26,7 +26,7 @@ export class Dashboard {
     await expect(this.tempBox).toContainText(expectedVal);
   }
 
-  // second way to move slider is to move slider based to added coordinates
+  // second way to move slider is to move slider based using the coordinates and mouse
   private async moveGauge(x1: number, y1: number) {
     // to be able to emulate the mouse movement it is required to mage the element fully visible on the screen
     await this.tempBox.scrollIntoViewIfNeeded();
