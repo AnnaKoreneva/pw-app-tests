@@ -1,7 +1,24 @@
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
+import { FormLayoutBase } from "./form-layout-base";
+import { iForms } from "../../../../../data/forms/iForms";
 
-export class FormLayout {
-  constructor(private readonly page: Page) {}
+export class UsingTheGrid extends FormLayoutBase {
+  constructor(protected readonly page: Page) {
+    super(page);
+    this.cardName = "Using the Grid";
+  }
+
+  async signIn(formData: iForms) {
+    await this.formCard().getByPlaceholder("Email").fill(formData.email);
+    await this.formCard().getByPlaceholder("Password").fill(formData.password);
+    await this.formCard().getByRole('radio', { name: formData.radios }).check({ force: true });
+    await this.formCard().getByRole('button',{name: 'Sign In'}).click()
+  }
+
+  async checkTheSignInFormData(formData: iForms) {
+    expect(await this.formCard().getByPlaceholder("Email").inputValue()).toEqual(formData.email);
+    await expect(this.formCard().getByRole("radio", { name: formData.radios })).toBeChecked();
+  }
 
   //locating element using locator
   private getEmail = () => this.page.locator("#inputEmail1");

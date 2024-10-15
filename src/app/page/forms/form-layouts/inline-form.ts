@@ -1,5 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { FormLayoutBase } from "./form-layout-base";
+import { iForms } from "../../../../../data/forms/iForms";
 
 export class InlineForm extends FormLayoutBase {
   constructor(protected readonly page: Page) {
@@ -7,10 +8,9 @@ export class InlineForm extends FormLayoutBase {
     this.cardName = "Inline Form";
   }
 
-  async submitInlineForm(userName: string, userEmail: string) {
-    await this.formCard().getByPlaceholder("Jane Doe").fill(userName);
-    //await this.email().fill(userEmail);
-    await this.email().pressSequentially(userEmail,{delay: 500})
+  async submitInlineForm(formData: iForms) {
+    await this.formCard().getByPlaceholder("Jane Doe").fill(formData.userName);
+    await this.email().pressSequentially(formData.email, { delay: 500 });
     await this.formCard().getByRole("checkbox").check({ force: true });
     await this.formCard().getByRole("button", { name: "Submit" }).click();
   }
@@ -20,11 +20,13 @@ export class InlineForm extends FormLayoutBase {
    * @param userName
    * @param userEmail
    */
-  async checkInputValues(userName: string, userEmail: string) {
+  async checkInputValues(formData: iForms) {
     // Generic assertion
-    const userNameValue = await this.formCard().getByPlaceholder("Jane Doe").inputValue()
-    expect(userNameValue).toEqual(userName)
+    const userNameValue = await this.formCard()
+      .getByPlaceholder("Jane Doe")
+      .inputValue();
+    expect(userNameValue).toEqual(formData.userName);
     // Locator assertion
-    await expect(this.email()).toHaveValue(userEmail);
+    await expect(this.email()).toHaveValue(formData.email);
   }
 }
