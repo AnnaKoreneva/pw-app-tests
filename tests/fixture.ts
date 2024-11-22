@@ -1,21 +1,3 @@
-/**
-Import Statements:
-import { test as base } from '@playwright/test': This imports the test function from the @playwright/test module, renaming it to base. This function is likely used to define tests in Playwright.
-import api from "../api/apiUtils": This imports api from the apiUtils module located in the relative path ../api/apiUtils.
-
-Type Declaration:
-type MyFixture: This defines a TypeScript type called MyFixture, which has a single property named API of type api.
-
-Fixture Extension:
-const fixtures = base.extend<MyFixture>({...}): This extends the base fixture (likely provided by Playwright) with custom functionality. It takes an object as an argument with properties corresponding to fixture names (API in this case) and their implementations.
-
-Fixture Implementation:
-API: async ({ request }, use) => { ... }: This is the implementation of the API fixture. It is an asynchronous function that takes an object { request } and a use function. Inside the function, it creates an instance of the api class with the provided request, then it awaits the use function with the created API instance as an argument. This essentially allows the test to use the API instance within its scope.
-
-Export Statement:
-export { fixtures }: This exports the fixtures object, presumably to be used elsewhere in your codebase.
-**/
-
 import { test as base } from "@playwright/test";
 import { ApiUtils } from "../src/api/apiUtils.ts";
 import { Tooltip } from "../src/app/page/modals-and-overlays/tooltip.ts";
@@ -24,6 +6,9 @@ import { DatePicker } from "../src/app/page/forms/date-picker.ts";
 import { Dashboard } from "../src/app/page/iot-dashboard/iotDashboard.ts";
 import { DragDropAndIframe } from "../src/app/page/externalSite/dragDropAndIframe.ts";
 import { Navigation } from "../src/app/page/navigation/navigation.ts";
+import { PageManager } from "../src/app/page/pageManager.ts";
+import { InlineForm } from "../src/app/page/forms/form-layouts/inline-form.ts";
+import { FormLayoutBase } from "../src/app/page/forms/form-layouts/form-layout-base.ts";
 
 type MyFixture = {
   API: ApiUtils;
@@ -33,6 +18,8 @@ type MyFixture = {
   dashboardPage: Dashboard;
   dragAndDropPage: DragDropAndIframe;
   navigatePage: Navigation;
+  pageManager: PageManager;
+  formLayoutsPageInlineComponent: InlineForm;
 };
 
 const fixtures = base.extend<MyFixture>({
@@ -44,7 +31,9 @@ const fixtures = base.extend<MyFixture>({
   tooltipPage: async ({ page }, use) => {
     const tooltipPage = new Tooltip(page);
     await tooltipPage.navigateToTooltipPage();
+    console.log('Pre-condition')
     await use(tooltipPage);
+    console.log('Tear Down: Everything typed after word use will be run after test execution!')
   },
 
   smartTablePage: async ({ page }, use) => {
@@ -74,6 +63,17 @@ const fixtures = base.extend<MyFixture>({
   navigatePage: async ({ page }, use) => {
     const navigatePage = new Navigation(page)
     await use(navigatePage);
+  },
+
+  pageManager: async ({ page }, use) => {
+    const pageManager = new PageManager(page)
+    await use(pageManager);
+  },
+
+  formLayoutsPageInlineComponent: async ({ page }, use) => {
+    const formLayoutsPageInlineComponent = new InlineForm(page);
+    await formLayoutsPageInlineComponent.navigateToFormLayouts();
+    await use(formLayoutsPageInlineComponent);
   }
 
 });

@@ -1,7 +1,13 @@
 import { fixtures as test } from "../../fixture";
 
+
 test("browser dialog box: delete table row", async ({ smartTablePage }) => {
   await smartTablePage.deleteRaw();
+});
+
+test("PageManager => browser dialog box: delete table row", async ({ pageManager }) => {
+  await pageManager.onSmartTablePage().navigateToSmartTablePage();
+  await pageManager.onSmartTablePage().deleteRaw();
 });
 
 test("edit the age using unique email value", async ({ smartTablePage }) => {

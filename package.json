@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test-webkit": "npx playwright test date-picker.spec.ts --project=webkit",
+    "test-chromium": "npx playwright test date-picker.spec.ts --project=chromium",
+    "both-browser": "npm run test-webkit & npm run test-chromium",
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.43.0",
-    "@types/node": "^20.16.5"
+    "@types/node": "^20.16.5",
+    "allure-playwright": "^3.0.6",
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }

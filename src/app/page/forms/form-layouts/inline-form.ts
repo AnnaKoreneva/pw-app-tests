@@ -21,12 +21,10 @@ export class InlineForm extends FormLayoutBase {
    * @param userEmail
    */
   async checkInputValues(formData: iForms) {
-    // Generic assertion
     const userNameValue = await this.formCard()
       .getByPlaceholder("Jane Doe")
       .inputValue();
     expect(userNameValue).toEqual(formData.userName);
-    // Locator assertion
     await expect(this.email()).toHaveValue(formData.email);
   }
 }
