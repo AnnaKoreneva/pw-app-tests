@@ -1,5 +1,4 @@
 import { Locator, Page, expect } from "@playwright/test";
-import { getRandomDate, getRandomStartEndNumbers } from "../../../helpers/randomDate";
 import { randomInt } from "crypto";
 
 
@@ -12,7 +11,6 @@ export class DatePicker {
 
   private datePicker = (datePickerPlaceholder: string): Locator =>
     this.page.getByPlaceholder(datePickerPlaceholder);
-
   
   private async setDatePicker(numberOfDaysFromToday: number){
     var dateTemp = new Date();
@@ -44,12 +42,14 @@ export class DatePicker {
     await this.datePicker("Form Picker").click();
     var dateFromNow = this.getRandomStartEndNumbers()
     var fullDate = await this.setDatePicker(dateFromNow[0])
+    await this.page.screenshot({path: 'screens/datePicker.png'})
     await expect(this.datePicker("Form Picker")).toHaveValue(fullDate);
   }
 
   async setRangePickerAndCheckSelection() {
     var dateFromNow = this.getRandomStartEndNumbers()
     await this.datePicker("Range Picker").click();
+    await this.page.locator("nb-card", { hasText: "Common Datepicker" }).screenshot({ path: "screens/datePickerComponent.png" });
     var startDate = await this.setDatePicker(dateFromNow[0]);
     var endDate = await this.setDatePicker(dateFromNow[1]);
     var fullDate = `${startDate} - ${endDate}`

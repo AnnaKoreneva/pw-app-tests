@@ -2,6 +2,7 @@ import { Locator, Page, expect } from "@playwright/test";
 
 export class Tooltip {
   constructor(private readonly page: Page) {}
+  
   tooltipPlacementCard: Locator = this.page.locator("nb-card", {
     hasText: "Tooltip Placements",
   });
@@ -14,10 +15,11 @@ export class Tooltip {
 
   async isTopTooltipVisible() {
     await this.hover(this.top);
+    console.log("Test");
     await expect(this.topTooltip).toBeVisible();
   }
 
   async navigateToTooltipPage() {
-    await this.page.goto("http://localhost:4200/pages/modal-overlays/tooltip");
+    await this.page.goto(`${process.env.URL}/pages/modal-overlays/tooltip`);
   }
 }

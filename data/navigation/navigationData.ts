@@ -7,9 +7,19 @@ export enum pageGroups {
   Auth = "Auth",
 }
 
-export const webPagesForms = {
-  "Form Layouts": "pages/forms/layouts",
-  Datepicker: "pages/forms/datepicker",
+export interface iWebPage{
+  pageName: string;
+  pageUrl: string;
+}
+
+export const FormLayouts: iWebPage = {
+  pageName: "Form Layouts",
+  pageUrl: "/pages/forms/layouts",
+};
+
+export const DatePicker: iWebPage = {
+  pageName: "DAtepicker",
+  pageUrl: "/pages/forms/layouts",
 };
 
 export const webPagesModalOverlays = {
@@ -18,4 +28,12 @@ export const webPagesModalOverlays = {
   Popover: "pages/modal-overlays/popover",
   Toastr: "pages/modal-overlays/toastr",
   Tooltip: "pages/modal-overlays/tooltip",
+};
+
+export const extWebPage = {
+  DragDropAndIframe: "https://globalsqa.com/demo-site/draganddrop/",
+};
+
+export const intWebPage = {
+  FormLayouts: `${process.env.URL}/pages/forms/layouts`,
 };
