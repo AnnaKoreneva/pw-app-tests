@@ -1,13 +1,13 @@
-import { Locator, Page, expect } from "@playwright/test";
+import { Locator, Page, expect } from '@playwright/test';
 
 export class Tooltip {
   constructor(private readonly page: Page) {}
-  
-  tooltipPlacementCard: Locator = this.page.locator("nb-card", {
-    hasText: "Tooltip Placements",
+
+  tooltipPlacementCard: Locator = this.page.locator('nb-card', {
+    hasText: 'Tooltip Placements',
   });
-  top: Locator = this.tooltipPlacementCard.getByRole("button", { name: "Top" });
-  topTooltip: Locator = this.page.getByText("This is a tooltip");
+  top: Locator = this.tooltipPlacementCard.getByRole('button', { name: 'Top' });
+  topTooltip: Locator = this.page.getByText('This is a tooltip');
 
   async hover(locator: Locator) {
     await locator.hover();
@@ -15,7 +15,6 @@ export class Tooltip {
 
   async isTopTooltipVisible() {
     await this.hover(this.top);
-    console.log("Test");
     await expect(this.topTooltip).toBeVisible();
   }
 

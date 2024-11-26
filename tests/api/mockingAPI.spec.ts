@@ -1,16 +1,17 @@
-import { test, expect } from "@playwright/test";
-import tags from "../../data/tags.json"
+import { test, expect } from '@playwright/test';
+import tags from '../../data/tags.json' assert { type: 'json' };
 
 test.beforeEach(async ({ page }) => {
-  await page.route("*/**/api/tags", async route => { //wildcard URL to simplify the look of the URL
+  await page.route('*/**/api/tags', async (route) => {
+    //wildcard URL to simplify the look of the URL
     await route.fulfill({
-      body: JSON.stringify(tags)
-    })
-  } );
-  await page.goto("https://conduit.bondaracademy.com/");
+      body: JSON.stringify(tags),
+    });
+  });
+  await page.goto('https://conduit.bondaracademy.com/');
 });
 
-test("has title", async ({ page }) => {
+test('has title', async ({ page }) => {
   await page.waitForTimeout(500);
-  await expect(page.locator(".navbar-brand")).toHaveText("conduit");
+  await expect(page.locator('.navbar-brand')).toHaveText('conduit');
 });

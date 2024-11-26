@@ -1,5 +1,4 @@
-import { Locator, Page } from '@playwright/test'
-import { InlineForm } from './inline-form';
+import { Locator, Page } from '@playwright/test';
 import { intWebPage } from '../../../../../data/navigation/navigationData';
 
 export class FormLayoutBase {
@@ -10,10 +9,10 @@ export class FormLayoutBase {
   }
 
   protected formCard = (): Locator =>
-    this.page.locator("nb-card", { hasText: this.cardName });
+    this.page.locator('nb-card', { hasText: this.cardName });
 
   protected email = (): Locator =>
-    this.formCard().getByRole("textbox", { name: "Email" });
+    this.formCard().getByRole('textbox', { name: 'Email' });
 
   async navigateToFormLayouts() {
     await this.page.goto(intWebPage.FormLayouts);

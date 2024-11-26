@@ -1,14 +1,13 @@
-import { test as base } from "@playwright/test";
-import { ApiUtils } from "../src/api/apiUtils.ts";
-import { Tooltip } from "../src/app/page/modals-and-overlays/tooltip.ts";
-import { SmartTable } from "../src/app/page/tables-and-data/smart-table.ts";
-import { DatePicker } from "../src/app/page/forms/date-picker.ts";
-import { Dashboard } from "../src/app/page/iot-dashboard/iotDashboard.ts";
-import { DragDropAndIframe } from "../src/app/page/externalSite/dragDropAndIframe.ts";
-import { Navigation } from "../src/app/page/navigation/navigation.ts";
-import { PageManager } from "../src/app/page/pageManager.ts";
-import { InlineForm } from "../src/app/page/forms/form-layouts/inline-form.ts";
-import { FormLayoutBase } from "../src/app/page/forms/form-layouts/form-layout-base.ts";
+import { test as base } from '@playwright/test';
+import { ApiUtils } from '../src/api/apiUtils.ts';
+import { Tooltip } from '../src/app/page/modals-and-overlays/tooltip.ts';
+import { SmartTable } from '../src/app/page/tables-and-data/smart-table.ts';
+import { DatePicker } from '../src/app/page/forms/date-picker.ts';
+import { Dashboard } from '../src/app/page/iot-dashboard/iotDashboard.ts';
+import { DragDropAndIframe } from '../src/app/page/externalSite/dragDropAndIframe.ts';
+import { Navigation } from '../src/app/page/navigation/navigation.ts';
+import { PageManager } from '../src/app/page/pageManager.ts';
+import { iotDashboard } from '../data/navigation/navigationData.ts';
 
 type MyFixture = {
   API: ApiUtils;
@@ -31,9 +30,7 @@ const fixtures = base.extend<MyFixture>({
   tooltipPage: async ({ page }, use) => {
     const tooltipPage = new Tooltip(page);
     await tooltipPage.navigateToTooltipPage();
-    console.log('Pre-condition')
     await use(tooltipPage);
-    console.log('Tear Down: Everything typed after word use will be run after test execution!')
   },
 
   smartTablePage: async ({ page }, use) => {
@@ -50,7 +47,8 @@ const fixtures = base.extend<MyFixture>({
 
   dashboardPage: async ({ page }, use) => {
     const dashboardPage = new Dashboard(page);
-    await dashboardPage.navigateToDashboardPage();
+    const navigatePage = new Navigation(page)
+    await navigatePage.goToPage(undefined, iotDashboard)
     await use(dashboardPage);
   },
 
@@ -61,12 +59,12 @@ const fixtures = base.extend<MyFixture>({
   },
 
   navigatePage: async ({ page }, use) => {
-    const navigatePage = new Navigation(page)
+    const navigatePage = new Navigation(page);
     await use(navigatePage);
   },
 
   pageManager: async ({ page }, use) => {
-    const pageManager = new PageManager(page)
+    const pageManager = new PageManager(page);
     await use(pageManager);
   },
 
@@ -74,8 +72,7 @@ const fixtures = base.extend<MyFixture>({
     const formLayoutsPageInlineComponent = new InlineForm(page);
     await formLayoutsPageInlineComponent.navigateToFormLayouts();
     await use(formLayoutsPageInlineComponent);
-  }
-
+  },
 });
 
 export { fixtures };

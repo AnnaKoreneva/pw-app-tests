@@ -1,46 +1,44 @@
 import { defineConfig, devices } from '@playwright/test';
-import path from 'node:path/win32';
-
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 4,
 
   reporter: [
-    ["list"],
-    ["json", { outputFile: "json-report/json-report.json" }],
+    ['list'],
+    ['json', { outputFile: 'json-report/json-report.json' }],
     [
-      "allure-playwright",
+      'allure-playwright',
       {
         details: true,
-        outputFolder: "allure-results",
-        suiteTitle: false
+        outputFolder: 'allure-results',
+        suiteTitle: false,
       },
     ],
   ],
 
   use: {
-    baseURL: "http://localhost:4200",
+    baseURL: 'http://localhost:4200',
 
-    trace: "on-first-retry",
-    video: "on",
+    trace: 'on-first-retry',
+    video: 'retain-on-failure',
   },
   projects: [
     {
-      name: "chromium",
+      name: 'chromium',
     },
 
     {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      name: 'webkit',
     },
 
     {
-      name: "mobile",
-      testMatch: "inline-form-mobile.spec.ts",
+      name: 'mobile',
+      testMatch: 'inline-form-mobile.spec.ts',
       use: {
-        ...devices["iPhone 13 Pro Max"],
+        ...devices['iPhone 13 Pro Max'],
       },
     },
   ],

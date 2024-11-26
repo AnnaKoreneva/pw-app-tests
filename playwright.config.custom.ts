@@ -1,15 +1,15 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 
-require('dotenv').config();
+//require('dotenv').config();
 
 export default defineConfig({
   use: {
-    baseURL: "http://localhost:4200",
+    baseURL: 'http://localhost:4200',
   },
   projects: [
     {
-      name: "chromium",
+      name: 'chromium',
       fullyParallel: true,
-    }
-  ]
+    },
+  ],
 });
