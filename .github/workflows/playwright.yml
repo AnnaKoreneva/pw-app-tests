@@ -19,6 +19,8 @@ jobs:
               run: npx playwright install --with-deps --force
             - name: Run Playwright tests
               run: npm run dashboard-tests
+            - name: Publish Test Summary Results
+              run: npx github-actions-ctrf ctrf/ctrf-report.json
             - uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
               with:
