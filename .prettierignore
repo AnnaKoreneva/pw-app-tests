@@ -1,0 +1,15 @@
+// .prettierignore
+# Playwright Specific
+node_modules/
+test-results/
+playwright-report
+summary.json
+
+# IDE - VSCode
+.vscode/*
+.husky/
+allure-results/
+test-results/
+json-report/
+screens/
+
