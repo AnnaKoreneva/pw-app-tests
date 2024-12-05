@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "dashboard-tests": "npx playwright test iotDashboard.spec.ts",
+        "dashboard-tests": "npx playwright test github-test.spec.ts",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "prettier": "prettier . --check",

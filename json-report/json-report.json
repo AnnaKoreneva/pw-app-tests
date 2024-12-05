@@ -88,18 +88,18 @@
   },
   "suites": [
     {
-      "title": "tests/app/iot-dashboard/iotDashboard.spec.ts",
-      "file": "tests/app/iot-dashboard/iotDashboard.spec.ts",
+      "title": "tests/app/github-test.spec.ts",
+      "file": "tests/app/github-test.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [
         {
-          "title": "IoT Dashboard: set slider to max using JS and check the temperature value",
+          "title": "github test without env variable",
           "ok": true,
           "tags": [],
           "tests": [
             {
-              "timeout": 50000,
+              "timeout": 30000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "chromium",
@@ -108,41 +108,19 @@
                 {
                   "workerIndex": 0,
                   "status": "passed",
-                  "duration": 2729,
+                  "duration": 4182,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "steps": [
-                    {
-                      "title": "set slider to max using JS and check the temperature value",
-                      "duration": 160,
-                      "steps": [
-                        {
-                          "title": "set slider to max value updating the JS cx and cy attributes",
-                          "duration": 130
-                        },
-                        {
-                          "title": "check that slider set to the max value",
-                          "duration": 143
-                        }
-                      ]
-                    }
-                  ],
-                  "startTime": "2024-12-05T06:00:55.300Z",
-                  "attachments": [
-                    {
-                      "name": "Allure Metadata (metadata)",
-                      "contentType": "application/vnd.allure.message+json",
-                      "body": "eyJ0eXBlIjoibWV0YWRhdGEiLCJkYXRhIjp7InBhcmFtZXRlcnMiOlt7Im5hbWUiOiJtYXggdGVtcGVyYXR1cmUiLCJ2YWx1ZSI6IjMwIn1dfX0="
-                    }
-                  ]
+                  "startTime": "2024-12-05T22:38:30.746Z",
+                  "attachments": []
                 }
               ],
               "status": "expected"
             },
             {
-              "timeout": 50000,
+              "timeout": 30000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "webkit",
@@ -151,52 +129,30 @@
                 {
                   "workerIndex": 1,
                   "status": "passed",
-                  "duration": 2713,
+                  "duration": 4199,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "steps": [
-                    {
-                      "title": "set slider to max using JS and check the temperature value",
-                      "duration": 144,
-                      "steps": [
-                        {
-                          "title": "set slider to max value updating the JS cx and cy attributes",
-                          "duration": 131
-                        },
-                        {
-                          "title": "check that slider set to the max value",
-                          "duration": 132
-                        }
-                      ]
-                    }
-                  ],
-                  "startTime": "2024-12-05T06:00:55.304Z",
-                  "attachments": [
-                    {
-                      "name": "Allure Metadata (metadata)",
-                      "contentType": "application/vnd.allure.message+json",
-                      "body": "eyJ0eXBlIjoibWV0YWRhdGEiLCJkYXRhIjp7InBhcmFtZXRlcnMiOlt7Im5hbWUiOiJtYXggdGVtcGVyYXR1cmUiLCJ2YWx1ZSI6IjMwIn1dfX0="
-                    }
-                  ]
+                  "startTime": "2024-12-05T22:38:30.746Z",
+                  "attachments": []
                 }
               ],
               "status": "expected"
             }
           ],
-          "id": "2c25722bb285471962b1-6acb8e426156b40d8eb2",
-          "file": "tests/app/iot-dashboard/iotDashboard.spec.ts",
-          "line": 6,
-          "column": 6
+          "id": "ac4d692774c81d6ba84f-058e272cc16522ab2e1e",
+          "file": "tests/app/github-test.spec.ts",
+          "line": 2,
+          "column": 1
         }
       ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-12-05T06:00:54.947Z",
-    "duration": 3678.0240000000003,
+    "startTime": "2024-12-05T22:38:30.413Z",
+    "duration": 5173.179,
     "expected": 2,
     "skipped": 0,
     "unexpected": 0,
