@@ -3,7 +3,7 @@ import { AllureHelper } from '../../../src/helpers/allureHelper';
 
 test.describe.configure({ retries: 1, timeout: 50000 });
 
-test('IoT Dashboard: set slider to max using JS and check the temperature value', async ({
+test.only('IoT Dashboard: set slider to max using JS and check the temperature value', async ({
     dashboardPage,
 }) => {
     await AllureHelper.step(
