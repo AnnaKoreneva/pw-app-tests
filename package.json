@@ -1,36 +1,38 @@
 {
-  "name": "pw-apitest-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test-webkit": "npx playwright test date-picker.spec.ts --project=webkit",
-    "test-chromium": "npx playwright test date-picker.spec.ts --project=chromium",
-    "both-browser": "npm run test-webkit & npm run test-chromium",
-    "lint": "npx eslint .",
-    "format": "prettier --write ."
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.15.0",
-    "@playwright/test": "^1.43.0",
-    "@types/node": "^20.16.5",
-    "@typescript-eslint/eslint-plugin": "^8.15.0",
-    "@typescript-eslint/parser": "^8.15.0",
-    "allure-playwright": "^3.0.6",
-    "eslint": "^9.15.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-playwright": "^2.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.12.0",
-    "prettier": "3.3.3",
-    "typescript-eslint": "^8.15.0"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5"
-  }
+    "name": "pw-apitest-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "mvp-tests": "npx playwright test",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "prettier": "prettier . --check",
+        "prettier:fix": "prettier . --write",
+        "prepare": "husky install"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@eslint/eslintrc": "^3.2.0",
+        "@eslint/js": "^9.15.0",
+        "@playwright/test": "^1.43.0",
+        "@types/node": "^20.16.5",
+        "@typescript-eslint/eslint-plugin": "^8.15.0",
+        "@typescript-eslint/parser": "^8.15.0",
+        "allure-playwright": "^3.0.6",
+        "eslint": "^9.15.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-playwright": "^2.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "globals": "^15.12.0",
+        "prettier": "^3.3.3",
+        "typescript-eslint": "^8.15.0",
+        "husky": "^8.0.0"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.5"
+    }
 }
